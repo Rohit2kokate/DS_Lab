@@ -1,6 +1,6 @@
 first java version 8 envirment is availabe
-step 1 :-in first terminal:-idlj -fall ReverseModule.idl
-step 2 :-in second terminal:-javac *.java ReverseImpl.java ReverseServer.java ReverseClient.java
-Step 3 :-tnameserv -ORBInitialPort 1050
-Step 4 :-in third terminal java ReverseServer -ORBInitialPort 1050
-Step 5 :-in fourth terminal java ReverseClient -ORBInitialPort 1050
+step 1 :-in first terminal:-   idlj -fall ReverseModule.idl
+step 2 :-in second terminal:-  javac *.java ReverseImpl.java ReverseServer.java ReverseClient.java
+Step 3 :-                  :-  tnameserv -ORBInitialPort 1050
+Step 4 :-in third terminal :-  java ReverseServer -ORBInitialPort 1050
+Step 5 :-in fourth terminal :- java ReverseClient -ORBInitialPort 1050
