@@ -109,6 +109,30 @@ public class bully {
         sc.close();
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*---------------------------------------------------OUTPUT-----------------------
 5 active process are:
 Process up = p1 p2 p3 p4 p5
@@ -141,3 +165,86 @@ Coordinator message send from process4to all
 4.Exit
 4
  */
+
+
+ /*
+  * 
+
+  Bully Algorithm Explanation
+The Bully Algorithm is a leader election algorithm used in distributed systems to determine which process will act as the coordinator. If the current coordinator fails, a new coordinator is elected based on priority (process ID). Processes with higher IDs are considered more powerful.
+
+Key Features
+1.Priority-Based Election:
+    The process with the highest ID among active processes becomes the coordinator.
+
+2. Decentralized Initiation:
+    Any process can initiate an election if it notices that the coordinator is down.
+
+3. Fault Tolerance:
+    Handles failures by dynamically electing a new coordinator.
+
+Steps of the Algorithm
+1. Detect Failure:
+
+    If a process detects that the coordinator is not responding, it initiates an election.
+2. Initiate Election:
+    The initiating process sends "Election" messages to all processes with higher IDs.
+3. Responses:
+
+    If a process with a higher ID is active, it responds with an "Alive" message, indicating that it will take over the election.
+4. New Coordinator:
+
+    The process with the highest ID that doesn't receive any "Alive" messages declares itself the new coordinator.
+    It sends "Coordinator" messages to inform all other processes.
+
+5.Resume Operations:
+    All processes update their records to reflect the new coordinator.
+Code Behavior
+1. Bring a Process Up:
+    If a process is brought up, it checks the current coordinator. If it is the highest ID, it may hold an election.
+2. Bring a Process Down:
+    If a process is brought down, it is marked inactive. If this process was the coordinator, other processes will detect the failure.
+3. Send a Message:
+    If the sender detects the coordinator is down, it initiates an election.
+    During the election, the highest active process becomes the coordinator.
+Theory with Diagram 
+Example:
+
+Process ID	State (Active/Down)	Coordinator
+P1	            Active	            P5
+P2	            Active	            P5
+P3	            Active	            P5
+P4	            Active	            P5
+P5	            Down	            P4
+1. P5 Fails:
+    P2 detects the failure of P5 and initiates an election.
+    Sends messages to P3, P4.
+
+2. Election:
+    P3 and P4 respond.
+    P4 declares itself the new coordinator (highest ID).
+3. Result:
+    P4 sends "Coordinator" messages to all processes.
+
+
+
+Initial State:
+P1 → P2 → P3 → P4 → [P5 (Coordinator)]
+
+Failure Detected:
+P2 → Election Message → P3, P4
+
+Responses:
+P4 → Alive Message → P2, P3
+
+New Coordinator:
+P4 → Coordinator Message → P1, P2, P3
+
+-------------------------
+Advantages
+Simple and easy to implement.
+Works well for small systems with clearly defined priorities.
+Disadvantages
+High communication overhead in large systems.
+Susceptible to delays if multiple processes fail simultaneously.
+  */

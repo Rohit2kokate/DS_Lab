@@ -13,7 +13,7 @@ public class ring {
 
         // Scanner for user input
         Scanner in = new Scanner(System.in);
-        System.out.println("Enter the number of processes: ");
+        System.out.println("\n Enter the number of processes: ");
         int num = in.nextInt();
 
         // Get input for each process
@@ -119,6 +119,31 @@ class Rr {
     String state;     // State (active/inactive)
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*-----------------OTPUT-----------------------------------------
 
 
@@ -154,3 +179,64 @@ Process 3 selected as coordinator.
 1. Election 2. Quit
 2
 ------------------------------------------------------------------------------------*/
+/*
+ * 
+ * 
+ * 
+ * Election Process:
+1. The process initiating the election sends a message to the next process in the
+     ring that is active.
+2. The message continues around the ring, skipping inactive processes.
+3. Each participating process adds its ID to the list (arr) used to determine
+     the new coordinator.
+4. Once the message completes a full cycle, the process with the highest ID 
+    becomes the new coordinator.
+Workflow:
+1. Input:
+    Number of processes and their IDs.
+    Simulate failure by marking the highest-numbered process as "inactive".
+2. Menu:
+    Option 1: Start an election.
+    Option 2: Quit the program.
+3. Election:
+    A chosen process sends messages around the ring to active processes.
+    Determines the new coordinator by finding the maximum ID among active participants.
+Sample Output Walkthrough:
+Input:
+
+Enter the number of processes: 4
+Enter the ID of process 1: 1
+Enter the ID of process 2: 2
+Enter the ID of process 3: 3
+Enter the ID of process 4: 4
+Sorted Processes:
+
+Processes sorted by ID:
+ [0] 1 [1] 2 [2] 3 [3] 4
+Process 4 selected as coordinator.
+Election (Initiated by Process 2):
+
+1. Election 2. Quit
+1
+Enter the process number that initiates the election:
+2
+
+Process 2 sends message to 3
+Process 3 sends message to 1
+Process 1 sends message to 2
+
+Process 3 selected as coordinator.
+Quit:
+
+1. Election 2. Quit
+2
+Program terminated.
+Key Features:
+1. Ring Structure:
+    Processes are logically arranged in a ring.
+    Message passing skips inactive processes and loops back to the initiator.
+2. Dynamic Coordinator Selection:
+    Always selects the highest ID from active processes.
+3. Interactive Menu:
+    Allows the user to trigger elections or quit.
+ */
